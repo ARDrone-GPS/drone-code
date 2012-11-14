@@ -36,8 +36,10 @@ int main ()
 	
 	printf("Takeoff message successfully sent to client\n");
 	int i = 0;
-	while(i++)
+	int j = 1;
+	while(j)
 	{
+		i = i + 1;
 		printf(i + " ");
 	}		
 }
