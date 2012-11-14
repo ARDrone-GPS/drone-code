@@ -1,4 +1,4 @@
 drone-code
 ==========
 
-Houses all code compiled for the drone's ARM processor
+Houses all code related to the Arduino and the ARM processor on the drone. 
