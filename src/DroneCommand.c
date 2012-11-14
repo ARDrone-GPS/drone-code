@@ -22,7 +22,7 @@ int main ()
 	struct sockaddr_in receiver_addr;
 	int sock_fd;
 	//command tells drone to take off
-	char line[21] = "AT*REF=101,290718208\r";
+	char line[21] = "AT*PCMD=305,1,0,0,0,1036831949\r";
 	sock_fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	receiver_addr.sin_family = AF_INET;
 	if( inet_aton( "192.168.1.1",  &receiver_addr.sin_addr )== 0) {
