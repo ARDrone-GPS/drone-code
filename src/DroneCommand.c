@@ -39,7 +39,7 @@ int main ()
 			sendto(sock_fd, takeoff, 21, 0,(struct sockaddr*)&receiver_addr,sizeof(receiver_addr));
 		if (key == 'l')
 			sendto(sock_fd, land, 21, 0,(struct sockaddr*)&receiver_addr,sizeof(receiver_addr));
-		std::cin>>key;
+		fgets (key, 1, stdin);
 	}
 	
 	close(sock_fd);
