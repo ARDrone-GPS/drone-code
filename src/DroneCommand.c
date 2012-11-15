@@ -17,12 +17,15 @@
 
 #define PORT 5556 //port that listens for AT commands
 
+char takeoff[21] = "AT*REF=101,290718208\r";
+char land[21] = "AT*REF=102,290717696\r";
+//char throttle[21] =
 int main () 
 {
 	struct sockaddr_in receiver_addr;
 	int sock_fd;
+	char key = 't';
 	//command tells drone to take off
-	char line[21] = "AT*PCMD=305,1,0,0,0,1036831949\r";
 	sock_fd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	receiver_addr.sin_family = AF_INET;
 	if( inet_aton( "192.168.1.1",  &receiver_addr.sin_addr )== 0) {
@@ -31,15 +34,22 @@ int main ()
 		return;
 	}
 	receiver_addr.sin_port = htons( PORT );
-	sendto(sock_fd, line, 21, 0,(struct sockaddr*)&receiver_addr,sizeof(receiver_addr));
+	while(key!='q'){
+		if(key == 't')
+			sendto(sock_fd, takeoff, 21, 0,(struct sockaddr*)&receiver_addr,sizeof(receiver_addr));
+		if (key == 'l')
+			sendto(sock_fd, land, 21, 0,(struct sockaddr*)&receiver_addr,sizeof(receiver_addr));
+		std::cin>>key;
+	}
+	
 	close(sock_fd);
 	
-	printf("Takeoff message successfully sent to client\n");
-	int i = 0;
+	//printf("Takeoff message successfully sent to client\n");
+	/*int i = 0;
 	int j = 1;
 	while(j)
 	{
 		i = i + 1;
 		printf(i + " ");
-	}		
+	}		*/
 }
